@@ -20,6 +20,12 @@ async function run() {
       password: process.env.SEED_OVI_PASSWORD!,
       role: "owner" as const,
     },
+       {
+      name: "Shared",
+      email: process.env.SEED_SHARED_EMAIL!,
+      password: process.env.SEED_SHARED_PASSWORD!,
+      role: "owner" as const,
+    },
     {
       name: "Jahed",
       email: process.env.SEED_JAHED_EMAIL!,
