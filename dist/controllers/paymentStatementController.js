@@ -8,11 +8,11 @@ const mongoose_1 = require("mongoose");
 const Phone_1 = __importDefault(require("../models/Phone"));
 const ShopPayment_1 = __importDefault(require("../models/ShopPayment"));
 const User_1 = __importDefault(require("../models/User"));
-const shopPaymentController_1 = require("./shopPaymentController");
 const paymentStatement_1 = require("../utils/paymentStatement");
+const shopPaymentController_1 = require("./shopPaymentController");
 // Only the fields needed to compute what the shop owes. Cost fields stay on the server:
 // they are used for the calculation but are NEVER returned to the client.
-const PHONE_FIELDS = "name soldPrice soldAt status buyingPrice transportCost serviceCost issueFixCost personalProfit createdAt updatedAt";
+const PHONE_FIELDS = "name imei soldPrice soldAt status buyingPrice transportCost serviceCost issueFixCost personalProfit createdAt updatedAt";
 /**
  * GET /api/shop-payments/statement?view=unpaid|paid|statement&page=1&limit=25[&ownerId=...]
  *  - owner role: always their OWN data (ownerId is ignored, so one reseller can't read another's).

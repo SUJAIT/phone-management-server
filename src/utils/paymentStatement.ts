@@ -20,6 +20,7 @@ export type PhoneState = "paid" | "partial" | "unpaid";
 export interface StatementPhone {
   _id: string;
   name: string;
+  imei: string;
   soldAt: Date;
   soldPrice: number;
   owed: number; // what the shop owes the reseller for this phone
@@ -33,6 +34,13 @@ export interface StatementEntry {
   id: string;
   date: Date;
   description: string;
+  // Present only on type "phone" rows (id = the phone id) so the UI can open its details.
+  name?: string;
+  imei?: string;
+  state?: PhoneState;
+  owed?: number;
+  paidAmount?: number;
+  unpaidAmount?: number;
   debit: number; // shop owes more (phone sold)
   credit: number; // shop paid
   balance: number; // running balance after this entry (unpaid so far)
@@ -64,6 +72,7 @@ export function buildStatement(
     return {
       _id: String(x.raw._id),
       name: x.raw.name,
+      imei: x.raw.imei || "",
       soldAt: x.at,
       soldPrice: x.raw.soldPrice,
       owed: x.owed,
@@ -81,6 +90,12 @@ export function buildStatement(
       id: p._id,
       date: p.soldAt,
       description: `${p.name} sold`,
+      name: p.name,
+      imei: p.imei,
+      state: p.state,
+      owed: p.owed,
+      paidAmount: p.paidAmount,
+      unpaidAmount: p.unpaidAmount,
       debit: p.owed,
       credit: 0,
     })),

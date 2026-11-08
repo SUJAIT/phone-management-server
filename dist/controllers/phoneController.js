@@ -1,19 +1,4 @@
 "use strict";
-// import { Response } from "express";
-// import Phone, { IPhone } from "../models/Phone";
-// import LedgerEntry from "../models/LedgerEntry";
-// import { AuthRequest } from "../middleware/auth";
-// import {
-//   startOfWeek,
-//   startOfMonth,
-//   startOfYear,
-//   toShopView,
-//   getProfitAndInvestmentSummary,
-//   daysUnsold,
-//   LONG_TIME_UNSOLD_DAYS,
-//   saleShortfall,
-// } from "../utils/calc";
-// import { broadcastChange } from "../realtime";
 var __importDefault = (this && this.__importDefault) || function (mod) {
     return (mod && mod.__esModule) ? mod : { "default": mod };
 };

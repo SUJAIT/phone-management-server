@@ -4,14 +4,13 @@ import Phone from "../models/Phone";
 import ShopPayment from "../models/ShopPayment";
 import User from "../models/User";
 import { AuthRequest } from "../middleware/auth";
- 
-import { unpaidForOwner } from "./shopPaymentController";
 import { buildStatement } from "../utils/paymentStatement";
+import { unpaidForOwner } from "./shopPaymentController";
 
 // Only the fields needed to compute what the shop owes. Cost fields stay on the server:
 // they are used for the calculation but are NEVER returned to the client.
 const PHONE_FIELDS =
-  "name soldPrice soldAt status buyingPrice transportCost serviceCost issueFixCost personalProfit createdAt updatedAt";
+  "name imei soldPrice soldAt status buyingPrice transportCost serviceCost issueFixCost personalProfit createdAt updatedAt";
 
 /**
  * GET /api/shop-payments/statement?view=unpaid|paid|statement&page=1&limit=25[&ownerId=...]
