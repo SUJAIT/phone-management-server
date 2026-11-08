@@ -7,6 +7,7 @@ import {
   addPaymentAsShop,
   getPaymentHistory,
 } from "../controllers/shopPaymentController";
+import { getPaymentStatement } from "../controllers/paymentStatementController";
 
 const router = Router();
 
@@ -19,6 +20,9 @@ router.post("/mine", requireRole("owner"), addPaymentAsOwner);
 // Shop side
 router.get("/by-owner", requireRole("shop"), getUnpaidByOwners);
 router.post("/by-owner", requireRole("shop"), addPaymentAsShop);
+
+// Paid / Unpaid phones + bank-statement view (read-only). Owner sees own, shop passes ?ownerId=
+router.get("/statement", requireRole("owner", "shop"), getPaymentStatement);
 
 // Shared history
 router.get("/history", requireRole("owner", "shop"), getPaymentHistory);

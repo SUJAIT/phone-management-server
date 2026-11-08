@@ -12,6 +12,7 @@ import investmentRoutes from "./routes/investmentRoutes";
 import dashboardRoutes from "./routes/dashboardRoutes";
 import shopPaymentRoutes from "./routes/shopPaymentRoutes";
 import ledgerRoutes from "./routes/ledgerRoutes";
+import publicRoutes from "./routes/publicRoutes";
 
 const app = express();
 
@@ -23,6 +24,7 @@ app.use(
     credentials: true,
   })
 );
+app.set("trust proxy", 1); // correct client IP behind Render/Vercel/etc. for the rate limiter
 app.use(express.json());
 app.use(cookieParser());
 
@@ -34,6 +36,7 @@ app.use("/api/investments", investmentRoutes);
 app.use("/api/dashboard", dashboardRoutes);
 app.use("/api/shop-payments", shopPaymentRoutes);
 app.use("/api/ledger", ledgerRoutes);
+app.use("/api/public", publicRoutes); // no login required (customer storefront)
 
 // central error handler (e.g. multer file errors, duplicate IMEI, etc.)
 app.use((err: any, _req: express.Request, res: express.Response, _next: express.NextFunction) => {
